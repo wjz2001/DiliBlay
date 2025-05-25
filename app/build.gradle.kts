@@ -3,17 +3,17 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 import org.gradle.api.JavaVersion
 
-// 获取当前年月日时分，转化为版本号
+// 获取当前年月日时分，转化为版本名
 fun getVersionName(): String {
     // 获取当前日期与时间
     val currentDate = LocalDateTime.now()
     // 格式化为两位年份、两位月份、两位日子、两位小时、两位分钟，使用中国时区
     val versionDateTimeFormatter = DateTimeFormatter.ofPattern("yy.MM.dd.HHmm", Locale.CHINA)
-    // 格式化后的日期输出为版本号
+    // 格式化后的日期输出为版本名
     return currentDate.format(versionDateTimeFormatter)
 }
 
-// 生成始终增加的VersionCode
+// 生成始终增加的版本号
 fun calculateVersionCode(): Int {
     // 使用时间戳（秒）
     val timestampCode = (System.currentTimeMillis() / 1000).toInt()
@@ -60,11 +60,7 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
-        compose = true
         viewBinding = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
         resources {
@@ -92,20 +88,10 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 }
