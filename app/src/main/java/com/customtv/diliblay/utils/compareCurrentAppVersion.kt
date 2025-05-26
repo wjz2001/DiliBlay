@@ -40,7 +40,7 @@ fun compareCurrentAppVersionWith(newVersionToCompare: String): Int {
             // 如果当前段相等，则继续比较下一段
         }
 
-        // 6. 如果所有段都相等，则版本号相同
+        // 如果所有段都相等，则版本号相同
         return 0
 
     } catch (e: NumberFormatException) {
