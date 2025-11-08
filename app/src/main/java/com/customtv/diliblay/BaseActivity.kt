@@ -22,17 +22,14 @@ open class BaseActivity : AppCompatActivity() {
         // 滑动时临时显示系统栏
         windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
-        // 隐藏状态栏、导航栏
+        // 隐藏状态栏
         windowInsetsController.hide(WindowInsetsCompat.Type.statusBars())
+        // 隐藏导航栏
         windowInsetsController.hide(WindowInsetsCompat.Type.navigationBars())
 
-        // 将当前正在创建的Activity添加到集合里
-        ActivityCollector.addActivity(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        // 从集合里移除一个马上要销毁的Activity
-        ActivityCollector.removeActivity(this)
     }
 }

@@ -1,7 +1,7 @@
+
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
-import org.gradle.api.JavaVersion
 
 // 获取当前年月日时分，转化为版本名
 fun getVersionName(): String {
@@ -24,6 +24,9 @@ fun calculateVersionCode(): Int {
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.dagger.hilt)
+    alias(libs.plugins.google.devtools.ksp)
+    id("com.google.protobuf") version "0.9.5"
 }
 
 android {
@@ -61,6 +64,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
     packaging {
         resources {
@@ -90,6 +94,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.media3.common.ktx)
+    implementation(libs.androidx.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -97,4 +103,25 @@ dependencies {
     implementation("com.guolindev.permissionx:permissionx:1.8.1")
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
     implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4")
+    implementation("androidx.activity:activity-ktx:1.11.0")
+    implementation("androidx.fragment:fragment-ktx:1.8.9")
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.3.0")
+    ksp("androidx.hilt:hilt-compiler:1.3.0")
+    implementation("com.google.dagger:hilt-android:2.57.2")
+    ksp("com.google.dagger:hilt-android-compiler:2.57.2")
+    implementation("com.hankcs:hanlp:portable-1.8.6")
+    implementation("androidx.datastore:datastore-preferences:1.1.7")
+    implementation("com.google.protobuf:protobuf-javalite:4.33.0")
+    implementation("com.github.DylanCaiCoding.DataStoreKTX:datastore-ktx:1.0.0")
+    implementation("com.github.DylanCaiCoding.Longan:longan:1.1.1")
+    implementation("com.github.DylanCaiCoding.Longan:longan-design:1.1.1")
+    implementation("com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-ktx:2.1.0")
+    implementation("com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-nonreflection-ktx:2.1.0")
+    implementation("com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:2.1.0")
+    implementation("com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-brvah:2.1.0")
 }

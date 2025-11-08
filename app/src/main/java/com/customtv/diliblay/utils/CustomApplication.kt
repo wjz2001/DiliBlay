@@ -1,19 +1,24 @@
-package com.customtv.diliblay
+package com.customtv.diliblay.utils
 
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import dagger.hilt.android.HiltAndroidApp
 
-class MyApplication : Application() {
+// Hilt依赖注入入口
+@HiltAndroidApp
+class CustomApplication : Application() {
+
     companion object {
-        // 此处Context全局只会存在一份实例，不会内存泄漏，添加注解使Android Studio忽略内存泄漏警告
+        // 该方法不会内存泄漏
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
             private set
     }
+
     override fun onCreate() {
         super.onCreate()
-        // 以静态变量的形式获取Context对象
+        // 全局获取Application中的Context
         context = applicationContext
     }
 }

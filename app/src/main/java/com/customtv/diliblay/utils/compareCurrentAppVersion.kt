@@ -2,15 +2,14 @@ package com.customtv.diliblay.utils
 
 import android.content.Context
 import android.content.pm.PackageInfo
-import com.customtv.diliblay.MyApplication
 
 fun compareCurrentAppVersionWith(newVersionToCompare: String): Int {
     // 获取当前应用的版本号
     fun getAppVersionName(context: Context): String {
             val packageInfo: PackageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
-            return packageInfo.versionName
+            return packageInfo.versionName ?: throw IllegalStateException("获取不到版本号")
     }
-    val currentAppVersion = getAppVersionName(MyApplication.context)
+    val currentAppVersion = getAppVersionName(CustomApplication.context)
 
     // 按 "." 分割版本号
     val partsCurrent = currentAppVersion.split('.')
